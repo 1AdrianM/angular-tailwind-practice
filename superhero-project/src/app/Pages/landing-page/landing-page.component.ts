@@ -9,19 +9,27 @@ import { ApiService } from '../../services/api.service';
 })
 export class LandingPageComponent {
 data: any
-  api = inject(ApiService);
-constructor(){
+  
+constructor(private  api: ApiService){
 
 }
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
-  this.data =this.api.CreateSuperHero()
-
+ 
   
 }
+
 FetchData(){
-console.log(this.data);
+ this.api.GetSuperHero().subscribe(
+ 
+  res => {this.data;
+  console.log(this.data);
+  },
+ error  => {console.log(error);
+ }
+
+   )
 }
 
 }
